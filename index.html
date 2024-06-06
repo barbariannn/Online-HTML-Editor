@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <title>Online HTML Editor</title>
+    <style>
+        body {
+
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            display: flex;
+            height: 100vh;
+        }
+
+        .editor-container {
+            width: 50%;
+            height: 584px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+            border: solid 5px rgb(204, 63, 63);
+        }
+
+        .toolbar {
+            padding: 10px;
+            background-color: #008c07;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toolbar button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        .toolbar button:hover {
+            background-color: #004494;
+        }
+
+        textarea {
+
+            background-color: #eaffe4;
+            flex-grow: 1;
+            border: none;
+            padding: 15px;
+            box-sizing: border-box;
+            font-family: monospace;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+        }
+
+        iframe {
+            width: 50%;
+            height: 100%;
+            border: none;
+            box-sizing: border-box;
+            background-color: #ffffff;
+
+            border: solid 5px rgb(204, 63, 63);
+        }
+
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+
+            display: flex;
+            justify-content: center;
+            background: #000;
+        }
+
+        footer p {
+            color: aliceblue;
+        }
+
+        footer a {
+            margin: 0 10px;
+            text-decoration: none;
+
+            color: lightgreen;
+        }
+
+        footer a:hover {
+            color: rgb(35, 255, 35);
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="editor-container">
+            <div class="toolbar">
+                <span>HTML Editor</span>
+                <button id="insert-anchor">Insert Link</button>
+            </div>
+            <textarea id="html-code" placeholder="Type your HTML code here..."></textarea>
+        </div>
+        <iframe id="output">
+
+        </iframe>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 <a href="#">Barbariannn</a> All Right Reserved</p>
+    </footer>
+
+    <script>
+        const htmlCode = document.getElementById('html-code');
+        const output = document.getElementById('output');
+        const insertAnchorButton = document.getElementById('insert-anchor');
+
+        htmlCode.addEventListener('input', () => {
+            output.srcdoc = htmlCode.value;
+        });
+
+        insertAnchorButton.addEventListener('click', () => {
+            const url = prompt('Enter the URL:');
+            if (url) {
+                const start = htmlCode.selectionStart;
+                const end = htmlCode.selectionEnd;
+                const selectedText = htmlCode.value.substring(start, end);
+                const anchorTag = `<a href="${url}">${selectedText || 'Link'}</a>`;
+                htmlCode.setRangeText(anchorTag, start, end, 'end');
+                output.srcdoc = htmlCode.value;
+            }
+        });
+    </script>
+</body>
+
+</html>
