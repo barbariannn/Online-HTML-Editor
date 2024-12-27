@@ -75,35 +75,31 @@
         }
 
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            left: 0;
-
-            display: flex;
-            justify-content: center;
-            background: #000;
+       ul{
+           display:flex;
+           justify-content:space-between;
+           align-items:center;
+       }
+        li{
+            list-style:none;
         }
 
-        footer p {
-            color: aliceblue;
-        }
-
-        footer a {
-            margin: 0 10px;
-            text-decoration: none;
-
-            color: lightgreen;
-        }
-
-        footer a:hover {
-            color: rgb(35, 255, 35);
-        }
+      
     </style>
 </head>
 
 <body>
+<header>
+    <ul>
+        <li>
+            <a href="html-to-bbcode.html">HTML to BBcode</a>
+        </li>
+        <li>
+            <a href="keyboard.html">Keyboards Key</a>
+        </li>
+    </ul>
+</header>
+    
     <main>
         <div class="editor-container">
             <div class="toolbar">
@@ -117,9 +113,7 @@
         </iframe>
 
     </main>
-    <footer>
-        <p>&copy; 2024 <a href="#">Barbariannn</a> All Right Reserved</p>
-    </footer>
+
 
     <script>
         const htmlCode = document.getElementById('html-code');
